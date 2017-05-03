@@ -11,6 +11,22 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function () {
-    return view('welcome');
+    
+    $user = new User;
+
+    $user->name = 'David Rivero';
+    $user->email = 'davidmriverog@gmail.com';
+    $user->password = bcrypt('test');
+    $user->gender = 'M';
+    $user->biography = 'Full Stack - Developer.';
+
+    if($user->save()){
+        return 'Success create a new user.';
+    }else{
+        return 'Error a Create user.';
+    }
+
 });
